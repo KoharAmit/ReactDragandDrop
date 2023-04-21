@@ -1,0 +1,211 @@
+/* general styling */
+* {
+  box-sizing: border-box;
+}
+
+/* used for animated-border */
+@property --gradient-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+
+:root {
+  --dark: #222;
+  --light: #fafafa;
+  --main: #1565c0;
+  --accent: #444;
+}
+
+html {
+  background-color: var(--dark);
+  color: var(--light);
+  font-size: 20px;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.3rem;
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+}
+
+strong {
+  color: var(--main);
+}
+
+/* masthead styling */
+/* image credits: https://wallpaperaccess.com/react-js */
+.masthead {
+  position: relative;
+  background-image: url('../public/img/masthead.png');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  height: 100vh;
+  justify-content: center;
+  z-index: 1;
+}
+
+.masthead::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: -1
+}
+
+.masthead-title {
+  justify-content: space-between;
+  font-size: 1.5rem;
+
+}
+
+.masthead-title i {
+  font-size: 3rem;
+  color: var(--main);
+}
+
+.scroll-to-start {
+  position: sticky;
+  top: 0;
+  text-align: center;
+  background-color: var(--main);
+  padding: 0.5rem;
+  border-top-right-radius: 20%;
+  border-top-left-radius: 20%;
+  z-index: 10;
+  transform: translateY(-95px);
+}
+
+.main-content {
+  width: 65%;
+  padding: 0 4rem;
+  margin-bottom: 2rem;
+}
+
+.main-content h2 {
+  color: var(--main);
+}
+
+/* main content styling */
+.contents {
+  display: flex;
+  justify-content: center;
+  padding: 0 2rem;
+}
+
+.contents div {
+  outline: 0.1rem solid var(--main);
+  border-radius: 5px;
+  border-top-left-radius: 25px;
+  border-bottom-right-radius: 25px;
+  background-color: var(--accent);
+  padding: 1rem;
+  margin: 0 1rem;
+  width: 465px;
+}
+
+.contents div:nth-child(2) {
+  background-color: var(--main);
+  outline: 0.1rem solid var(--light);
+}
+
+
+
+.board {
+  width: 600px;
+  min-height: 200px;
+  position: relative;
+  background-color: var(--dark);
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+  margin: 0 auto;
+  margin-top: 2rem;
+}
+
+.board::before,
+.board::after {
+  content: "";
+  position: absolute;
+  inset: -0.2rem;
+  z-index: -1;
+  background: conic-gradient(from var(--gradient-angle),
+      #1565c0,
+      #64b5f6,
+      #80cbc4,
+      #64b5f6,
+      #1565c0);
+  border-radius: inherit;
+  animation: rotation 5s linear infinite;
+}
+
+.board::after {
+  filter: blur(2.5rem);
+}
+
+@keyframes rotation {
+  0% {
+    --gradient-angle: 0deg;
+  }
+
+  100% {
+    --gradient-angle: 360deg;
+  }
+}
+
+.board div {
+  background-color: var(--accent);
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+  padding: 1rem;
+  margin-top: 0.5rem;
+}
+
+#reloadBtn {
+  cursor: pointer;
+  text-align: center;
+  background-color: var(--main);
+  width: calc(600px + 0.4rem);
+  padding: 0.5rem;
+  margin: 0.2rem auto;
+  border-bottom-left-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+  transition: background-color 250ms ease-in;
+}
+
+#reloadBtn:hover {
+  background-color: var(--accent);
+}
+
+/* footer styling */
+footer {
+  justify-content: space-between;
+  padding: 1rem 3rem;
+  background-color: var(--main);
+}
+
+footer a {
+  color: var(--light);
+}
+
+footer a:hover {
+  color: var(--accent);
+}
+
+/* media queries */
+@media screen and (max-width: 1040px){
+    .main-content{
+      width: 100%;
+    }
+    .content-bottom{
+      margin-top: 5rem;
+    }
+}
